@@ -1,0 +1,81 @@
+doctype html
+// saved from url=(0053)https://dance4healing-jan16.herokuapp.com/users/login
+html
+  head
+    meta(http-equiv='Content-Type', content='text/html; charset=UTF-8')
+    title Dance4healing
+    link(rel='stylesheet', href='/assets/bootstrap.css')
+    link(rel='stylesheet', href='/assets/style.css')
+    link(rel='stylesheet', href='/assets/fontello-embedded.css')
+    link(href='https://fonts.googleapis.com/css?family=Nunito:400,300,700', rel='stylesheet', type='text/css')
+    link(href='https://fonts.googleapis.com/css?family=Lato:400italic,700italic,300italic|Open+Sans:700|Roboto+Condensed:300,400,700', rel='stylesheet', type='text/css')
+  body(cz-shortcut-listen='true')
+    nav.navbar.navbar-default.navbar-fixed-top
+      #fb-root
+      #fb-root
+      // Facebook Login
+      script.
+        (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5";
+        fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+      .container
+        .navbar-header
+          button.navbar-toggle.collapsed(type='button', data-toggle='collapse', data-target='#navbar', aria-expanded='false', aria-controls='navbar')
+            span.sr-only Toggle Navigation
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+          a.navbar-brand(href='index.html') Dance4healing								
+        #navbar.collapse.navbar-collapse
+          ul.nav.navbar-nav
+            //
+              <li>
+              <a href="https://dance4healing-jan16.herokuapp.com/">Buddy Dance			</a></li>
+            li
+              a(href='/users/register') Join the Party
+            li.active
+              a(href='/users/login') Log In
+          ul.nav.navbar-nav.navbar-right
+    .container(style='margin-top: 75px; text-align: center; width: 380px; ')
+      h1 Log In
+      !=messages()
+      p(style="padding-bottom: 12px; font-family: 'Lato', sans-serif; font-size: 24px; font-weight: 300; letter-spacing: 1px;") Smile, Log in, Dance, Have Fun!
+      // add personality font
+      .fb-login-button(data-max-rows='1', data-size='xlarge', data-show-faces='false', data-auto-logout-link='false')
+      form(method='post', action='/users/login')
+        .form-group
+          label(style="float: left; font-family: 'Roboto Condensed', sans-serif;") Username
+          input.form-control.container(name='username', type='text')
+        .form-group(style='margin-bottom: 2px;')
+          label(style="float: left; font-family: 'Roboto Condensed', sans-serif;") Password
+          input.form-control.container(name='password', type='password')
+        p(style="margin-top: 2px; padding-bottom: 12px; font-size: 14px; font-family: 'Roboto Condensed', sans-serif; float: left;")
+          a(href='/forgotpassword', style=' margin-top: -10px;') Forgot your password?
+        // harder font, like open sans or montserrat
+        button.btn-lg.register2(type='submit', name='submit', style='margin-top: 36px; margin-left: -120px;') Let's Dance!
+        p(style="text-align: center; padding-top: 18px; font-size: 17px; padding-bottom: 18px; border-top-style: dotted; border-width: 2px; margin-top: 24px; font-family: 'Lato', sans-serif; font-size: 24px; font-weight: 300; letter-spacing: 1px;")
+          | No account and want to dance?
+        button.btn-lg.login2(type='button', name='button')
+          a(href='/users/register ', style='color: #CC3366;') Join the Party
+    footer
+      .icons
+        a(href='mailto:hello@dance4healing.com')
+          img(src='/assets/btn_mail.png', alt='')
+        a(href='https://www.facebook.com/groups/807980009230702/')
+          img(src='/assets/btn_heart.png', alt='')
+        a(href='https://www.facebook.com/danceforhealing?fref=ts')
+          img(src='/assets/btn_facebook.png', alt='')
+        a(href='http://www.twitter.com/dance4healing')
+          img(src='/assets/btn_twitter.png', alt='')
+      p.smallfooter
+        | Copyright	© Dance4Healing 2016
+      p.smallfooter
+        | Best viewed in 
+        a(href='https://www.google.com/chrome/browser/desktop/') Chrome web browser.
+    script(src='/assets/jquery.min.js')
+    script(src='/assets/bootstrap.js')
+

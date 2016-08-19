@@ -1,0 +1,354 @@
+html,
+body {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    font-family: 'Nunito', sans-serif;
+    background-color: #CC3366;
+    color: #f5f5f5;
+}
+
+a {
+    color: #fff;
+}
+
+a:hover {
+    color: #f5f5f5;
+}
+
+.logout {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.logout a {
+    color: blue;
+}
+
+.textLabel {
+    color: #ffffff;
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, "Lucida Grande", sans-serif;
+    ;
+    font-size: 24px;
+    margin-bottom: 10px;
+    padding-top: 10px;
+    margin-top: 10px;
+    font-weight: 300px;
+}
+
+#emot_overlay {
+    position: absolute;
+    top: 100px;
+    left: 400px;
+    width: 600px;
+    height: 600px;
+    text-align: center;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    border: solid 8px #dddbdb;
+    box-shadow: /*0 0 0 10px #6e6e6e,*/
+    0 0 0 4px #6e6e6e;
+    z-index: 9999;
+}
+
+.overlay {
+    position: absolute;
+    top: 220px;
+    left: 400px;
+    width: 600px;
+    height: 250px;
+    text-align: center;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    border: solid 8px #dddbdb;
+    box-shadow: /*0 0 0 10px #6e6e6e,*/
+    0 0 0 4px #6e6e6e;
+    display: none;
+    z-index: 9990;
+    background-color: #fa2d73;
+}
+
+#message {
+    color: #ffffff;
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, "Lucida Grande", sans-serif;
+    ;
+    font-size: 24px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.hideScreen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.75);
+    z-index: 1000;
+    color: white;
+    width: 1440px;
+    height: 900px;
+    border: 0px;
+    margin: 0px;
+    padding: 0px;
+    display: inline;
+}
+
+#emot_image {
+    height: 318px;
+    max-height: 318px;
+    width: 318px;
+    max-with: 318px;
+    text-align: center;
+    margin: 50px 141px;
+    padding-top: 50px;
+}
+
+#emot_text_small {
+    color: #ffffff;
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, "Lucida Grande", sans-serif;
+    ;
+    font-size: 24px;
+    margin-bottom: 30px;
+    text-align: center;
+    font-weight: 100;
+    padding: 0px;
+    margin-top: 0px;
+    position: relative;
+    top: -10px;
+}
+
+#emot_text {
+    text-align: center;
+    font-size: 36px;
+    font-weight: 400;
+    margin: 30px 0px 0px 0px;
+    padding: 0px;
+}
+
+.mainlogoarea {
+    text-align: center;
+    height: 200px;
+    background-color: #fff;
+    color: #CC3366;
+}
+
+.mainlogoarea img {
+    width: 550px;
+}
+
+.mainlogoarea h1 {
+    top: -50px;
+    position: relative;
+    font-size: 28px;
+}
+
+.buttonarea {
+    /*display: inline-block;*/
+    background-color: #CC3366;
+    text-align: center;
+}
+
+.buttonarea h2 {
+    color: #CC3366;
+    font-size: 22px;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: 700;
+    margin-top: 24px;
+    margin-bottom: 35px;
+}
+
+.attendclass {
+    background-color: #fff;
+    width: 260px;
+    height: 260px;
+    border-radius: 20px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.gap {
+    display: inline-block;
+    width: 50px;
+}
+
+
+/* OVERLAY */
+
+#btn_happy:hover,
+#btn_sad:hover,
+#btn_worried:hover {
+    opacity: 1.0;
+}
+
+#btn_happy {
+    position: relative;
+    top: -317px;
+    left: -5px;
+}
+
+#btn_sad {
+    position: relative;
+    top: -317px;
+}
+
+#btn_tired {
+    position: relative;
+    left: -72px;
+    top: -355px;
+}
+
+#btn_angry {
+    position: relative;
+    left: 66px;
+    top: -355px;
+}
+
+#btn_worried {
+    position: relative;
+    top: -394px;
+    left: -5px;
+}
+
+#btn_scared {
+    position: relative;
+    top: -394px;
+}
+
+#face_neutral {
+    position: relative;
+    left: -2px;
+    top: -621px;
+}
+
+#welcome {
+    position: absolute;
+    left: 0px;
+}
+
+#page_holder {
+    height: 100%;
+    width: 100%;
+    z-index: 100;
+}
+
+footer {
+    text-align: center;
+    background-color: #CC3366;
+}
+
+footer a {
+    text-decoration: none;
+}
+
+footer p {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: 300;
+    font-size: 18px;
+}
+
+footer .smallfooter {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: 300;
+    font-size: 14px;
+}
+
+.icons img {
+    margin-bottom: 0px;
+    margin-right: 8px;
+    margin-left: 8px;
+    margin-top: 8px;
+    text-decoration: none;
+    width: 60px;
+}
+
+
+/* FLIP */
+
+.flip-container {
+    perspective: 1000px;
+    transform-style: preserve-3d;
+    display: inline-block;
+    vertical-align: middle;
+    padding: 30px 0px;
+}
+
+.flip-container:hover .back {
+    transform: rotateY(0deg);
+}
+
+.flip-container:hover .front {
+    transform: rotateY(180deg);
+}
+
+.flip-container,
+.front,
+.back {
+    width: 260px;
+    height: 260px;
+}
+
+.flipper {
+    transition: 0.6s;
+    transform-style: preserve-3d;
+    position: relative;
+}
+
+.front,
+.back {
+    backface-visibility: hidden;
+    transition: 0.6s;
+    transform-style: preserve-3d;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #fff;
+    border-radius: 20px;
+}
+
+.front {
+    z-index: 2;
+    transform: rotateY(0deg);
+}
+
+.back {
+    transform: rotateY(-180deg);
+}
+
+.back p {
+    font-size: 12px;
+    margin-top: -25px;
+    margin-right: 25px;
+    margin-left: 30px;
+    color: #000;
+    text-align: left;
+}
+
+
+/*@media (max-width: 1200px) {
+    .mainlogoarea {
+        background-image: url("d4h_logo.png");
+    }
+    .buttonarea {
+        display: block;
+    }
+}
+
+@media (max-width: 1000px) {
+    .mainlogoarea {}
+}
+
+@media (max-width: 670px) {
+    .mainlogoarea {
+        background-image: url("d4h_logo.png");
+        background-size: 90%
+    }
+    .mainlogoarea h1 {
+        margin-top: 175px;
+        font-size: 28px;
+    }
+}
+*/

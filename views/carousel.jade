@@ -1,0 +1,53 @@
+doctype html
+html
+  head
+    meta(charset='UTF-8')
+    title Owl Carousel Demo
+    script(src='http://s.codepen.io/assets/libs/modernizr.js', type='text/javascript')
+    meta(name='viewport', content='width=device-width')
+    link(rel='stylesheet', href='carousel_files/normalize.css')
+    link(rel='stylesheet prefetch', href='http://www.owlcarousel.owlgraphic.com/assets/owlcarousel/assets/owl.carousel.min.css')
+    link(rel='stylesheet prefetch', href='http://www.owlcarousel.owlgraphic.com/assets/owlcarousel/assets/owl.theme.default.min.css')
+    link(rel='stylesheet', href='carousel_files/style.css')
+  body
+    section.title
+      .row
+        .large-12.columns
+          h1 Responsive
+    // Demos
+    section#demos
+      .row
+        .large-12.columns
+          .owl-carousel
+            .owl-item(style='width: 230.25px; margin-right: 10px;')
+              .item(data-hash='eight')
+                h4 8
+            .item-video(data-merge='1')
+              a.owl-video(data-hash='zero', href='https://www.youtube.com/watch?v=JpxsRwnRwCQ')
+            .item-video(data-merge='1')
+              a.owl-video(href='http://www.youtube.com/watch?v=oy18DJwy5lI')
+            .item-video(data-merge='2')
+              a.owl-video(href='http://www.youtube.com/watch?v=H3jLkJrhHKQ')
+            .item-video(data-merge='3')
+              a.owl-video(href='https://www.youtube.com/watch?v=g3J4VxWIM6s')
+            .item-video(data-merge='1')
+              a.owl-video(href='http://www.youtube.com/watch?v=0fhoIate4qI')
+            .item-video(data-merge='2')
+              a.owl-video(href='https://www.youtube.com/watch?v=EF_kj2ojZaE')
+            .item
+              h4 8
+            .item
+              h4 9
+            .item
+              h4 10
+            .item
+              h4 11
+            .item
+              h4 12
+          a.button.secondary.url(href='#zero') zero
+          a.button.secondary.url(href='#one') one
+          a.button.secondary.url(href='#eight') eight
+          script(src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js')
+          script(src='http://www.owlcarousel.owlgraphic.com/assets/owlcarousel/owl.carousel.js')
+          script(src='carousel_files/index.js')
+

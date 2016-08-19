@@ -1,0 +1,35 @@
+doctype html
+html
+  head
+    meta(http-equiv='Content-Type', content='text/html; charset=UTF-8')
+    title Dance4healing
+    link(rel='stylesheet', href='/assets/bootstrap.css')
+    link(rel='stylesheet', href='/assets/style.css')
+    // <link rel="stylesheet" href="/assets/fontello-embedded.css">
+    link(href='https://fonts.googleapis.com/css?family=Nunito:400,300,700', rel='stylesheet', type='text/css')
+  .container-fluid
+    .mainlogoarea
+      // <h1>Welcome to</h1>
+    .buttonarea
+      button.btn-lg.login(type='button', name='button')
+        a(href='/users/login') Log In
+      button.btn-lg.register(type='button', name='button')
+        a(href='/users/register') Join the Party
+  footer
+    .icons
+      a(href='mailto:hello@dance4healing.com')
+        img(src='/assets/btn_mail.png', alt='')
+      a(href='https://www.facebook.com/groups/807980009230702/')
+        img(src='/assets/btn_heart.png', alt='')
+      a(href='https://www.facebook.com/danceforhealing?fref=ts')
+        img(src='/assets/btn_facebook.png', alt='')
+      a(href='http://www.twitter.com/dance4healing')
+        img(src='/assets/btn_twitter.png', alt='')
+    p
+      | Copyright	© Dance4Healing 2016
+    p
+      | Best viewed in 
+      a(href='https://www.google.com/chrome/browser/desktop/') Chrome web browser
+      | .
+  script(src='/assets/jquery.min.js')
+  script(src='/assets/bootstrap.js')

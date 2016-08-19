@@ -1,0 +1,110 @@
+    body {
+        background-image:url('bg_VirtualClass.png');
+        background-repeat:no-repeat;
+        background-color:#ffffcc;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+    #remotes video {
+        height: 275px;
+    }
+    #localVideo {
+        height: 275px;
+        position: absolute;
+        top:460px;
+        left:372px;
+        margin-bottom:10px;
+    }
+    #remotes {
+        position:absolute;
+        top: 460px;
+        left: 744px;
+    }
+    #myytplayer, #ytapiplayer, #ytplayer {
+        position:absolute;
+        top: 40px;
+        left: 510px;
+        padding: 0px;
+        margin: 0px;
+    }
+    #YoutubeSelector{
+        position:absolute;
+        top: 2px;
+        left: 510px;
+        padding:0px;
+        margin-top:10px;
+        margin-bottom:10px;
+        width: 430px;
+        font-size: 14px;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+    #screenShareButton, #subTitle, #createRoom {
+        display:none;
+    }
+    h1 {
+        position: absolute;
+        top: 0px;
+        left: 400px;
+        padding-top: 0px;
+        display: none;
+    }
+    #btnPlay {
+        position: absolute;
+        top: 409px;
+        /*left: 560px;*/
+        left: 655px;
+        padding: 0px;
+        margin: 0px;
+        border: 0px;
+    }
+    #btnPause {
+        position: absolute;
+        top: 409px;
+        /*left: 750px;*/
+        left:655px;
+        padding: 0px;
+        margin: 0px;
+        border: 0px;
+    }
+    #btnQuit {
+        position: absolute;
+        top: 60px;
+        right: 20px;
+        padding: 0px;
+        margin: 0px;
+        border: 0px;
+    }
+    #startButton, #stopButton, #leaveButton{
+        display: none;
+    }
+    #countdownDiv {
+        font-size: 80px;
+	font-family: Arial, Helvetica, sans-serif;
+        display:none;
+        position: absolute;
+        left:510px;
+        top:140px;
+        height: 150px;
+        width: 425px;
+        text-align: center;
+        vertical-align: middle;
+        opacity: 1;
+        z-index:999;
+    }
+    #countdownDivBack{
+        display:none;
+        position: absolute;
+        left:510px;
+        top:42px;
+        height: 360px;
+        width: 430px;
+        z-index=998;
+    }
+    img.btn_spotlight{
+        display:none;position:absolute;opacity:0.5;top: 460px;
+    }
+/******make it see a resize*******/
+/******make it see a resize*******/
+/******make it see a resize*******/
+/******make it see a resize*******/
+/******make it see a resize*******/
+/******make it see a resize*******/

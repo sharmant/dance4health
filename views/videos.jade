@@ -1,0 +1,226 @@
+doctype html
+// saved from url=(0045)https://localhost:3001/videos?danceroom=hello
+html
+  head
+    meta(http-equiv='Content-Type', content='text/html; charset=UTF-8')
+    title Dance4Healing
+    script(async='', src='buddydance_files/analytics.js')
+    link(type='text/css', rel='stylesheet', href='buddydance_files/jquery-ui.css')
+    link(type='text/css', rel='stylesheet', href='buddydance_files/ui.notify.css')
+    script(src='buddydance_files/jquery-2.1.4.js', type='text/javascript')
+    script(src='buddydance_files/jquery.notify.js', type='text/javascript')
+    script.
+      (function(i, s, o, g, r, a, m) {
+      i['GoogleAnalyticsObject'] = r;
+      i[r] = i[r] || function() {
+      (i[r].q = i[r].q || []).push(arguments)
+      }, i[r].l = 1 * new Date();
+      a = s.createElement(o),
+      m = s.getElementsByTagName(o)[0];
+      a.async = 1;
+      a.src = g;
+      m.parentNode.insertBefore(a, m)
+      })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+      ga('create', 'UA-55968779-1', 'auto');
+      ga('send', 'pageview');
+    script(type='text/javascript', src='https://cdn.socket.io/socket.io-1.3.7.js')
+    script(src='buddydance_files/jquery-ui.min.js')
+    script(src='buddydance_files/latest.js')
+    link(rel='stylesheet', href='buddydance_files/d4h.css')
+    style.
+      body {
+      background-image: url('buddydance_files/bg_VirtualClass.png') !important;
+      background-repeat: no-repeat;
+      background-color: #ffffff;
+      font-family: Arial, Helvetica, sans-serif;
+      }
+    style(type='text/css', media='screen').
+      #ytapiplayer {
+      visibility: hidden
+      }
+    style(type='text/css', media='screen').
+      #ytapiplayer {
+      visibility: hidden
+      }
+  body.active(onunload="webrtc.webrtc.localStream.stop();webrtc.webrtc.mute();document.getElementById('localVideo').src=null;webrtc.connection.disconnect();", style='zoom: 1;')
+    script(type='text/javascript', src='buddydance_files/all.js')
+    h1#title Dance4Healing
+    .logout
+      a(href='users/logout') Logout
+    #controlCover
+    #countdownDiv
+    #countdownDivBack
+      img(src='buddydance_files/screen.png')
+    button#screenShareButton
+    p#subTitle Link to join: https://localhost:3001/videos?danceroom=hello
+    select#YoutubeSelector(onchange='if (this.selectedIndex) doSomething(this);')
+      option(value='', selected='selected') Please select a video
+      // <option value="a-pEiJ6oVAg">Short Dance - Whatever Doesn't Kill You</option>
+      option(value='8v98bjJPivs') Nia: Kirsten Group Class - Song 01 
+      option(value='UVV_z7Vx7xU') Nia: Kirsten Group Class - Song 07
+      option(value='_qu4FkvtKNo') Nia: Hand Slow
+      option(value='NF-DqWvgxWY') Nia: Hand Fast
+      option(value='Tfq-u_Mtjxo') Danceation: Janet Brock solo 
+      option(value='x9_JfDAmI9g') Danceation: Heath Group Class - Dance 1 (Warm up) 
+      option(value='P5OMYc9U64c') Danceation: Heath Group Class - Dance 2 (sexy dance) 
+      option(value='oeA3UMeSCSM') Danceation: Heath Group Class - Dance 3 (Be happy) 
+      option(value='eGbK20Qzlww') Danceation: Heath Group Class - Dance 4 (Hands on your body) 
+      option(value='EW2P3g-a104') Danceation: Heath Group Class - Dance 5 (With scarves) 
+      option(value='0VsSrGF05c0') Danceation: Heath Group Class - Danceation explained & song 
+      option(value='fRsYIw2YUaw') Nia: Kristen Group Class - Warmup
+      option(value='A1d4MvXvjgs') Nia: Kirsten Group Class - High Energy, Martial Arts Style
+      option(value='a3zg8vU_CZ4') Nia: Kirsten Group Class - Slower Song, No Worries
+      option(value='1vGyn4qSuSc') Soul Motion: Devorah - Intro
+      option(value='FcRJneb423w') Soul Motion: Devorah - Dance 1
+      option(value='GhOpeHsDYzQ') Soul Motion: Devorah Group Class - Dance 2 (Partner Dance)
+      option(value='Eyj7yZWhoec') Soul Motion: Devorah- Dance 3 (Walking)
+      option(value='71em09UYkiQ') Soul Motion: Devorah Group Class - Dance 4 (Latin, Free Dance)
+      option(value='RjZ3XEpxPuQ') Zumba: Melissa - Intro
+      option(value='Sm4VU6XyFok') Zumba: Melissa Group Class - Warmup 1
+      option(value='f4GaTklUzjg') Zumba: Melissa Group Class - Warmup 2
+      option(value='TS6nyQv_0IM') Zumba: Melissa Group Class - Samba
+      option(value='TzwFuu9KSeY') Zumba: Melissa Group Class - Dance 2
+      option(value='vnV73fAy4P0') Zumba: Melissa Group Class - Dance 3
+      option(value='ThoCc96kuRA') Zumba: Melissa Group Class - Cool Down
+      option(value='u5HtNm2hfiE') Zumba: Melissa Solo - Dance 1
+      option(value='-s7WXahorIU') Zumba: Melissa Solo - Dance 2
+      option(value='DrhIUEPq5Ps') Zumba: Melissa Solo - Dance 3
+      option(value='5Ne5g2dfCR0') What is Bollywood Dance?
+      option(value='K-wr1y7Dt4U') Bollywood Intro Moves + Dance
+    #myytplayer
+    #container
+    script(type='text/javascript').
+      var tag = document.createElement('script');
+      tag.src = "https://www.youtube.com/iframe_api";
+      var firstScriptTag = document.getElementsByTagName('script')[0];
+      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+      var ytplayer;
+      function onYouTubeIframeAPIReady() {
+      ytplayer = new YT.Player('myytplayer', {
+      height: 356,
+      width: 425,
+      videoId: '8v98bjJPivs',
+      events: {
+      'onStateChange': onytplayerStateChange
+      },
+      playerVars: {
+      controls: 0,
+      modestbranding: 1,
+      origin: "demo.dance4healing.com",
+      rel: 0,
+      showinfo: 0,
+      autoplay: 0,
+      fs: 0,
+      }
+      });
+      }
+      function onPlayerStateChange(event) {
+      if (event.data == YT.PlayerState.PLAYING && !done) {
+      setTimeout(stopVideo, 6000);
+      done = true;
+      }
+      }
+      function onytplayerStateChange(event) {
+      if (event.data != 1) {
+      var sel = document.getElementById("YoutubeSelector");
+      var videoId = sel.options[sel.selectedIndex].value;
+      var event;
+      switch (event.data) {
+      case 0:
+      event = "ended";
+      break;
+      case -1:
+      event = "unstarted";
+      break;
+      case 2:
+      event = "paused";
+      break;
+      default:
+      return;
+      }
+      $.post('/videos', {
+      videoId: videoId,
+      event: event
+      }, function() {
+      console.log('success');
+      });
+      }
+      }
+      // 4. The API will call this function when the video player is ready.
+      function onPlayerReady(event) {
+      //event.target.playVideo();
+      event.target.setVolume(60);
+      //event.target.cuePlaylist("PLPJQEpXHMj2ThVewiDWpwJ8pGQXzR43QW");
+      console.log(event.target.getPlaylist());
+      }
+      // 5. The API calls this function when the player's state changes.
+      //    The function indicates that when playing a video (state=1),
+      //    the player should play for six seconds and then stop.
+      var done = false;
+      function stopVideo() {
+      ytplayer.stopVideo();
+      }
+    img#btnPlay(src='buddydance_files/btn_StartDancing.png', alt='Start Dancing!', style='visibility:visible;')
+    img#btnPause(src='buddydance_files/btn_Stop.png', alt='Pause Instruction', style='visibility:hidden;')
+    button#startButton Start your Camera
+    button#stopButton Stop your Camera
+    button#leaveButton Leave Dance Chat
+    video#localVideo(autoplay='', src='blob:https%3A//localhost%3A3001/c7357d3a-480b-49c5-b8aa-f57a35430279', style='transform: scaleX(-1);')
+    #remotes(style='transform: scaleX(-1);')
+    img#pauseButton(src='buddydance_files/btn_pause_s.png', alt='Pause')
+    // <button id="pauseButton">Pause Camera+Mic</button>
+    img#resumeButton(src='buddydance_files/btn_resume_s.png', alt='Resume')
+    // <button id="resumeButton">Resume Camera+Mic</button>
+    style.
+      .logout {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      }
+      #pauseButton {
+      position: absolute;
+      /*top: 738px;
+      left:475px;*/
+      top: 500px;
+      left: 390px;
+      opacity: 0.5;
+      visibility: visible;
+      }
+      #resumeButton {
+      position: absolute;
+      /*top: 738px;
+      left:552px;*/
+      top: 500px;
+      left: 390px;
+      opacity: 0.5;
+      visibility: hidden;
+      }
+    img#toggleLocalButton(src='buddydance_files/btn_camera_s.png', alt='Reverse Video', title='1')
+    img#toggleRemotesButton(src='buddydance_files/btn_camera_s.png', alt='Reverse Remote Video', title='1')
+    span#copyright
+      | Copyright � 2014 Dance4Healing. All rights reserved. This site is best viewed in 
+      a(href='https://www.google.com/intl/en/chrome/browser/') chrome
+      |  and 
+      a(href='http://www.mozilla.org/en-US/firefox/new/') firefox
+      | .
+    style.
+      #copyright {
+      position: fixed;
+      font-size: 10px;
+      font-family: Arial, Helvetica, sans-serif;
+      bottom: 0px;
+      right: 10px;
+      margin-bottom: 10px;
+      }
+      #toggleLocalButton {
+      position: absolute;
+      top: 474px;
+      left: 390px;
+      opacity: 0.5;
+      }
+      #toggleRemotesButton {
+      position: absolute;
+      top: 474px;
+      left: 755px;
+      opacity: 0.5;
+      }

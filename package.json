@@ -1,0 +1,33 @@
+{
+  "name": "dance4healing-stan4rd",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "dependencies": {
+    "async": "^1.5.2",
+    "bcrypt": "^0.8.5",
+    "body-parser": "~1.12.0",
+    "connect-flash": "*",
+    "cookie-parser": "~1.3.4",
+    "crypto": "0.0.3",
+    "debug": "~2.1.1",
+    "express": "~4.12.0",
+    "express-messages": "*",
+    "express-session": "*",
+    "express-validator": "*",
+    "fs": "0.0.2",
+    "jade": "~1.9.2",
+    "mongodb": "*",
+    "mongoose": "*",
+    "morgan": "~1.5.1",
+    "multer": "*",
+    "nodemailer": "0.7.1",
+    "passport": "*",
+    "passport-http": "*",
+    "passport-local": "*",
+    "serve-favicon": "~2.2.0",
+    "socket.io": "^1.3.7"
+  }
+}

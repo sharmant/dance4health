@@ -1,0 +1,157 @@
+doctype html
+html
+  head
+    title Dance4Healing
+    link(rel='stylesheet', href='welcomePage_files/welcome.css')
+    link(href='https://fonts.googleapis.com/css?family=Nunito:400,300,700', rel='stylesheet', type='text/css')
+    script.
+      (function(i, s, o, g, r, a, m) {
+      i['GoogleAnalyticsObject'] = r;
+      i[r] = i[r] || function() {
+      (i[r].q = i[r].q || []).push(arguments)
+      }, i[r].l = 1 * new Date();
+      a = s.createElement(o),
+      m = s.getElementsByTagName(o)[0];
+      a.async = 1;
+      a.src = g;
+      m.parentNode.insertBefore(a, m)
+      })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+      ga('create', 'UA-55968779-1', 'auto');
+      ga('send', 'pageview');
+    script.
+      function keypressed(e) {
+      if (e.keyCode == 13) {
+      goToRoom();
+      }
+      }
+      function goToRoom() {
+      console.log('in goToRoom');
+      console.log(document.getElementById('form1').elements[0].value);
+      roomName = document.getElementById('form1').elements[0].value;
+      document.location.href = 'videos?danceroom=' + roomName;
+      }
+      function hideEmot() {
+      document.getElementById("emot_overlay").style.display = 'none';
+      }
+      function hideMessage(id) {
+      //code
+      document.getElementById(id).style.display = "none";
+      }
+      function hoverEff(e) {
+      e.style.opacity = "1.0";
+      face_neutral.src = "welcomePage_files/face_" + e.id.substring(4) + ".png";
+      }
+      function hoverOff(e) {
+      e.style.opacity = "0.5";
+      face_neutral.src = "welcomePage_files/face_neutral.png";
+      }
+      function changeMsg(type, msg) {
+      msgTxt = document.getElementById("message");
+      msgTxt.innerHTML = "<b><u>" + type + "<br /><br /></u></b>" + msg;
+      console.log("msg updated");
+      emot_overlay.style.display = 'none';
+      message_overlay.style.display = 'inline';
+      setTimeout(function() {
+      message_overlay.style.display = 'none';
+      hideScreen.style.display = "none"
+      }, 5000);
+      }
+      function clickIt(e) {
+      switch (e.id) {
+      case "btn_happy":
+      changeMsg("Happy", "We're ecstatic that you are happy!<br />Let's rock the party!");
+      //alert ("We're ecstatic that you are happy!\\\\nLet's rock the party!");
+      btn_happy.style.opacity = 1.0;
+      break;
+      case "btn_sad":
+      changeMsg("Sad", "Sad? Let's see if we can fix that!");
+      btn_sad.style.opacity = 1.0;
+      break;
+      case "btn_tired":
+      changeMsg("Tired", "Tired? Music and dancing will lift you up! :)");
+      btn_tired.style.opacity = 1.0;
+      break;
+      case "btn_angry":
+      changeMsg("Angry", "Oh, I'm sorry to hear that. <br />Let's see if we can cool you down!");
+      btn_angry.style.opacity = 1.0;
+      break;
+      case "btn_worried":
+      changeMsg("Worried", "Don't Worry. Everything will be ok :)");
+      btn_worried.style.opacity = 1.0;
+      break;
+      case "btn_scared":
+      changeMsg("Scared", "\"The only thing to fear is fear itself\" - FDR");
+      btn_scared.style.opacity = 1.0;
+      break;
+      }
+      //hideScreen.style.display="none";
+      //emot_overlay.style.display="none";
+      }
+  body(onload="hideScreen.style.zIndex='1000';emot_overlay.zIndex='9999';")
+    .container-fluid
+      .mainlogoarea
+        .logout
+          a(href='users/logout') Logout
+        img(src='welcomePage_files/d4h_logo.png')
+        - var str = name;
+        - var fname = str.split(',')[0];
+        h1 Welcome, #{fname}!
+      .buttonarea
+        .flip-container(ontouchstart="this.classList.toggle('hover');")
+          .flipper
+            .front
+              h2 Dance With Your Buddy
+              img(src='welcomePage_files/graphic_buddy_dance.png', alt='')
+            .back
+              h2 Dance With Your Buddy
+              p
+                | Ready to rock? Brainstorm with your buddy about a fun name for your dynamic duo. For example, your favorite cartoon! Before you know it, your dynamic duo will be taking over the world!
+              form#form1(action='javascript:goToRoom();', method='get', style='color: #CC3366; margin: 15px 15px; border-radius: 10px;')
+                input(type='text', name='lname', style='border-radius: 10px; border-style: solid;')
+                br
+              button(type='submit', form='form1', value='Submit', style='border-radius: 10px; color: #fff;background-color: #CC3366;; border-style: solid; border-color: #CC3366;') Go!
+        .gap
+        .attendclass
+          a(href='class')
+            h2 Attend A Virtual Class
+            img(src='welcomePage_files/graphic_group_dance.png', alt='')
+    #hideScreen.hideScreen
+    #emot_overlay(style='background-color:#fa2d73; z-index:9999;')
+      br
+      #emot_text.textLabel.white How do you feel right now?
+      br
+      #emot_text_small.textLabel.white Click to choose your emotion
+      br
+      img#bg_circle(src='welcomePage_files/bg_circle.png', alt='background')
+      br
+      img#btn_happy(style='opacity:0.5;', src='welcomePage_files/btn_happy.png', alt='happy', onmouseover='hoverEff(this);', onmouseout='hoverOff(this);', onclick='clickIt(this);')
+      img#btn_sad(style='opacity:0.5;', src='welcomePage_files/btn_sad.png', alt='sad', onmouseover='hoverEff(this);', onmouseout='hoverOff(this);', onclick='clickIt(this);')
+      br
+      img#btn_tired(style='opacity:0.5;', src='welcomePage_files/btn_tired.png', alt='tired', onmouseover='hoverEff(this);', onmouseout='hoverOff(this);', onclick='clickIt(this);')
+      img#btn_angry(style='opacity:0.5;', src='welcomePage_files/btn_angry.png', alt='angry', onmouseover='hoverEff(this);', onmouseout='hoverOff(this);', onclick='clickIt(this);')
+      br
+      img#btn_worried(style='opacity:0.5;', src='welcomePage_files/btn_worried.png', alt='worried', onmouseover='hoverEff(this);', onmouseout='hoverOff(this);', onclick='clickIt(this);')
+      img#btn_scared(style='opacity:0.5;', src='welcomePage_files/btn_scared.png', alt='scared', onmouseover='hoverEff(this);', onmouseout='hoverOff(this);', onclick='clickIt(this);')
+      br
+      img#face_neutral(src='welcomePage_files/face_neutral.png', style='display:inline;', alt='unsure')
+      // <img id="face_neutral" src="welcomePage_files/face_neutral.png" style="display:inline;" alt="unsure" onclick="hideEmot();"/>
+    #message_overlay.overlay(style='display:none;', onclick="message_overlay.style.display='none';hideScreen.style.display='none';")
+      // <img id="x" src='welcomePage_files/x.png' onclick="document.getElementById('message_overlay').style.display='none';" style='position:relative;top: 5px;right: 5px;'/>
+      p#message This is a test message
+      p#closeLink.white Click to close emotion acknowledgement
+    footer
+      .icons
+        a(href='mailto:hello@dance4healing.com')
+          img(src='assets/btn_mail.png', alt='')
+        a(href='https://www.facebook.com/groups/807980009230702/')
+          img(src='assets/btn_heart.png', alt='')
+        a(href='https://www.facebook.com/danceforhealing?fref=ts')
+          img(src='assets/btn_facebook.png', alt='')
+        a(href='http://www.twitter.com/dance4healing')
+          img(src='assets/btn_twitter.png', alt='')
+      p
+        | Copyright © Dance4Healing 2016
+        br
+        | Best viewed in 
+        a(href='https://www.google.com/chrome/browser/desktop/') Chrome web browser
+        | .

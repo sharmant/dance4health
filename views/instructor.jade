@@ -1,0 +1,607 @@
+doctype html
+// saved from url=(0045)http://demo.dance4healing.com/instructor.html
+html
+  head
+    meta(http-equiv='Content-Type', content='text/html; charset=windows-1252')
+    title Dance4Healing
+    script(async='', src='instructor_files/analytics.js')
+    script.
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-55968779-1', 'auto');
+      ga('send', 'pageview');
+    script(type='text/javascript', src='instructor_files/swfobject.js')
+    script(src='instructor_files/jquery.min.js')
+    script(src='instructor_files/latest.js')
+    script.
+      var webrtc;
+      var CurrentVol=1;
+      function swapButton(eClicked,eReplace) {
+      //code
+      document.getElementById(eClicked).style.visibility="hidden";
+      document.getElementById(eReplace).style.visibility="visible";
+      }
+      //set localVideoConstraints (chrome only)
+      var localWidth=320;
+      var localHeight=240;
+      var bandwidthConstraint=200;
+      var instructing=false;
+      var instructorId="";
+      var spotlight = new Object();
+      /*var spotlightEl=new Object();
+      var spotlightArray= new Array();*/
+      var PeerCount=0;
+      //var newSpotlight = new Array();
+      var spotTop= new Array();
+      var spotLeft=new Array();
+      function xy(x) {
+      o = document.getElementById(x);
+      l =o.offsetLeft;
+      t = o.offsetTop;
+      while (o=o.offsetParent) {
+      l += o.offsetLeft;
+      t += o.offsetTop;
+      }
+      t=t+document.body.offsetTop;
+      l=l+document.body.offsetLeft;
+      return { top: t, left: l };
+      }
+      //volume slider
+      function updateSlider(slideAmount) {
+      z=0;
+      CurrentVol=slideAmount/100;
+      //alert("error");
+      var sliderDiv = document.getElementById("sliderAmount");
+      webrtc.adjustPeerVolume=!0;
+      while (z<webrtc.webrtc.getPeers().length) {
+      //webrtc.webrtc.getPeers()[z].videoEl.volume=document.getElementById("slide").value/100;
+      if (instructorId="") {
+      //code
+      webrtc.webrtc.getPeers()[z].videoEl.volume=document.getElementById("slide").value/100;
+      } else {
+      if (webrtc.webrtc.getPeers()[z].id==instructorId) {
+      //code
+      console.log ("instructorId: "+instructorId+" : Peers: "+webrtc.webrtc.getPeers()[z].id+"\\n");
+      } else {
+      webrtc.webrtc.getPeers()[z].videoEl.volume=document.getElementById("slide").value/100;
+      }
+      }
+      z++;
+      }
+      z=0;
+      console.log(
+      "VolumeSlider: "+slideAmount+
+      "\\nCurrentVol: "+CurrentVol+
+      "\\nPeer(0): "+webrtc.webrtc.getPeers()[0].videoEl.volume
+      )
+      }
+  body.active(onunload='pauseBroadcast();', style='zoom: 1;')
+    h1#title Dance4Healing
+    style.
+      body {
+      background-image:url('instructor_files/bg_VirtualClass.png');
+      background-repeat:no-repeat;
+      background-color:#ffffff;
+      }
+      #remotes video {
+      height: 175px;
+      }
+      #localVideo {
+      height: 350px;
+      position: absolute;
+      top:470px;
+      left:5px;
+      }
+      #remotes {
+      position:absolute;
+      top: 470px;
+      left: 471px;
+      }
+      #instructorVideo {
+      position:absolute;
+      top: 25px;
+      left: 482px;
+      padding: 0px;
+      margin: 0px;
+      height: 375px;
+      //width: 425px;
+      transform: scaleX(-1);
+      /*webkit-transform: scaleX(-1);
+      moz-transform: scaleX(-1);
+      ms-transform: scaleX(-1);*/
+      }
+      #toggleInstructorButton {
+      position:absolute;
+      top: 30px;
+      left: 487px;
+      }
+      #screenShareButton, #subTitle, #createRoom {
+      display:none;
+      }
+      #btnPlay {
+      position: absolute;
+      top: 406px;
+      /*left: 560px;*/
+      left: 655px;
+      padding: 0px;
+      margin: 0px;
+      border: 0px;
+      }
+      #btnPause {
+      position: absolute;
+      top: 406px;
+      /*left: 750px;*/
+      left:655px;
+      padding: 0px;
+      margin: 0px;
+      border: 0px;
+      }
+      h1, #startButton, #stopButton, #leaveButton, #btnQuit{
+      display: none;
+      }
+      /*#slide {
+      position:absolute;
+      left: 500px;
+      top: 410px;
+      z-index:8000;
+      }*/
+      #volumeLow {
+      position: absolute;
+      left: 670px;
+      top: 450px;
+      z-index: 8000;
+      }
+      #volumeHigh {
+      position: absolute;
+      left: 795px;
+      top: 448px;
+      z-index: 8000;
+      }
+      input[type="range"], input[type="range"]:active, input[type="range"]:hover,  input[type="range"]:focus {
+      -webkit-appearance:none !important;
+      background-repeat: no-repeat;
+      background-image: url('instructor_files/bar.png');
+      width: 100px;
+      height: 4px;
+      border: 0px none !important;
+      position:absolute;
+      left: 685px;
+      top: 450px;
+      z-index:8000;
+      }
+      input[type="range"]::-webkit-slider-thumb{
+      -webkit-appearance:none !important;
+      background-image: url('instructor_files/slider_control.png');
+      width: 7px;
+      height: 12px;
+      opacity: 1;
+      }
+    button#screenShareButton(disabled='') share screen
+    p#subTitle Link to join: http://demo.dance4healing.com/instructor.html
+    #instructorHolder
+      video#instructorVideo
+    img#btnPlay(src='instructor_files/btn_StartTeaching.png', alt='Start Dancing!', onclick='broadcast()', style='visibility:visible;')
+    img#btnPause(src='instructor_files/btn_StopTeaching.png', alt='Pause Instruction', onclick='pauseBroadcast()', style='visibility:hidden;')
+    video#localVideo
+    #remotes
+    input#slide(type='range', min='0', max='100', step='10', value='100', onchange='updateSlider(this.value)')
+    img#volumeLow(src='instructor_files/volume_low.png')
+    img#volumeHigh(src='instructor_files/volume_high.png')
+    script.
+      // grab the room from the URL
+      if (location.search.indexOf('?')!=-1) {
+      //code
+      var room = location.search.split('?')[1];
+      room = room.toLowerCase();
+      } else {
+      var room = "crazyOne";
+      }
+      //room="virtualClass";
+      //var room = location.search && location.search.split('?')[1];
+      function startDancing() {
+      //
+      // create our webrtc connection
+      webrtc = new SimpleWebRTC({
+      // the id/element dom element that will hold "our" video
+      localVideoEl: 'localVideo',
+      // the id/element dom element that will hold remote videos
+      remoteVideosEl: 'remotes',
+      // immediately ask for camera access
+      autoRequestMedia: true,
+      muted: true,
+      log: true
+      });
+      webrtc.config.peerVolumeWhenSpeaking=0;
+      webrtc.webrtc.config.autoAdjustMic=false;
+      // when it's ready, join if we got a room from the URL
+      webrtc.on('readyToCall', function () {
+      // you can name it anything
+      if (room) webrtc.joinRoom(room);
+      //webrtc.webrtc.gainController.gain=1;
+      webrtc.webrtc.peers.reverse();
+      webrtc.setVolumeForAll(75);
+      z=0;
+      while (z<webrtc.webrtc.getPeers().length) {
+      webrtc.webrtc.getPeers()[z].videoEl.volume=1;
+      z++;
+      }
+      //webrtc.webrtc.getPeers()[0].videoEl.volume=0.5;
+      instructorVideo.volume=1;
+      localVideo.volume=0;
+      d4hVideoEl=document.getElementById("localVideo");
+      //console.log("Width: "+d4hVideoEl.videoWidth+"\\n Height: "+d4hVideoEl.videoHeight);
+      //mute the local video element audio (possibly fix the firefox feedback issue)
+      d4hVideoEl.volume=0;
+      //document.getElementById("localVideo").muted=true;
+      checkPeerCount();
+      var peerSearch = setInterval(function() {
+      // search for instructor***********
+      checkPeerCount();
+      }, 5000);
+      });
+      }
+      startDancing();
+      // Since we use this twice we put it here
+      function setRoom(name) {
+      $('form').remove();
+      $('h1').text("Dance4Healing");
+      $('#subTitle').text('Link to join: ' + location.href);
+      $('body').addClass('active');
+      }
+      if (room) {
+      setRoom(room);
+      } else {
+      $('form').submit(function () {
+      var val = $('#sessionInput').val().toLowerCase().replace(/\\s/g, '-').replace(/[^A-Za-z0-9_\-]/g, '');
+      webrtc.createRoom(val, function (err, name) {
+      var newUrl = location.pathname + '?' + name;
+      if (!err) {
+      history.replaceState({foo: 'bar'}, null, newUrl);
+      setRoom(name);
+      }
+      });
+      return false;
+      });
+      }
+      var button = $('#screenShareButton'),
+      setButton = function (bool) {
+      button.text(bool ? 'share screen' : 'stop sharing');
+      };
+      setButton(true);
+      if (!webrtc.screenSharingSupport) {
+      button[0].disabled = true;
+      } else {
+      button.click(function () {
+      if (webrtc.localScreen) {
+      webrtc.stopScreenShare();
+      setButton(true);
+      } else {
+      webrtc.shareScreen();
+      setButton(false);
+      }
+      });
+      }
+    //
+      ******other attempts********
+      //pauseButton
+    img#pauseButton(src='instructor_files/btn_pause_s.png', alt='Pause')
+    img#resumeButton(src='instructor_files/btn_resume_s.png', alt='Resume')
+    style.
+      #pauseButton{
+      position:absolute;
+      /*top: 738px;
+      left:475px;*/
+      top: 510px;
+      left:15px;
+      opacity: 0.5;
+      visibility: visible;
+      }
+      #resumeButton{
+      position:absolute;
+      /*top: 738px;
+      left:552px;*/
+      top: 510px;
+      left:15px;
+      opacity: 0.5;
+      visibility: hidden;
+      }
+    script.
+      //bind pauseButton
+      pauseButton=document.getElementById("pauseButton");
+      resumeButton=document.getElementById("resumeButton");
+      //pauseButton.onmousedown="this.style.backgroundcolor=#000000;this.style.top=this.style.top+5";
+      //pauseButton.onmousedown="this.style.backgroundcolor=#ffffff;this.style.top=this.style.top-5";
+      pauseButton.onclick=function() {webrtc.webrtc.pause();localVideo.style.opacity="0.5";this.style.visibility="hidden";resumeButton.style.visibility="visible"};
+      //bind resumeButton
+      resumeButton.onclick=function() {webrtc.webrtc.resume();localVideo.style.opacity="1.0";this.style.visibility="hidden";pauseButton.style.visibility="visible"};
+    // toggle Mirroring on Videos
+    img#toggleLocalButton(src='instructor_files/btn_camera_s.png', alt='Reverse Video', title='1')
+    img#toggleInstructorButton(style='display:none;position:absolute;opacity:0.5;', src='instructor_files/btn_camera_s.png', alt='Reverse Video', onclick='transform(instructorVideo,this.title);this.title=this.title*-1;', title='1')
+    // <button id="toggleLocalButton">Reverse Local Video (This Display Only)</button>
+    // <img id="toggleRemotesButton" src="btn_camera_s.png" alt="Reverse Remote Video">
+    img#toggleRemote_0(style='display:none;position:absolute;opacity:0.5;', src='instructor_files/btn_camera_s.png', alt='Reverse Remote Video', onclick='toggleRemote(0)', title='1')
+    img#toggleRemote_1(style='display:none;position:absolute;opacity:0.5;', src='instructor_files/btn_camera_s.png', alt='Reverse Remote Video', onclick='toggleRemote(1)', title='1')
+    img#toggleRemote_2(style='display:none;position:absolute;opacity:0.5;', src='instructor_files/btn_camera_s.png', alt='Reverse Remote Video', onclick='toggleRemote(2)', title='1')
+    img#toggleRemote_3(style='display:none;position:absolute;opacity:0.5;', src='instructor_files/btn_camera_s.png', alt='Reverse Remote Video', onclick='toggleRemote(3)', title='1')
+    img#toggleRemote_4(style='display:none;position:absolute;opacity:0.5;', src='instructor_files/btn_camera_s.png', alt='Reverse Remote Video', onclick='toggleRemote(4)', title='1')
+    img#toggleRemote_5(style='display:none;position:absolute;opacity:0.5;', src='instructor_files/btn_camera_s.png', alt='Reverse Remote Video', onclick='toggleRemote(5)', title='1')
+    img#toggleRemote_6(style='display:none;position:absolute;opacity:0.5;', src='instructor_files/btn_camera_s.png', alt='Reverse Remote Video', onclick='toggleRemote(6)', title='1')
+    img#toggleRemote_7(style='display:none;position:absolute;opacity:0.5;', src='instructor_files/btn_camera_s.png', alt='Reverse Remote Video', onclick='toggleRemote(7)', title='1')
+    img#toggleRemote_8(style='display:none;position:absolute;opacity:0.5;', src='instructor_files/btn_camera_s.png', alt='Reverse Remote Video', onclick='toggleRemote(8)', title='1')
+    img#toggleRemote_9(style='display:none;position:absolute;opacity:0.5;', src='instructor_files/btn_camera_s.png', alt='Reverse Remote Video', onclick='toggleRemote(9)', title='1')
+    img#setSpotlight_0.btn_spotlight(style='display:none;position:absolute;opacity:0.5;', src='instructor_files/btn_spotlight.png', alt='SpotLightThis', onclick='changeSpotlight(0)')
+    img#setSpotlight_1.btn_spotlight(style='display:none;position:absolute;opacity:0.5;', src='instructor_files/btn_spotlight.png', alt='SpotLightThis', onclick='changeSpotlight(1)')
+    img#setSpotlight_2.btn_spotlight(style='display:none;position:absolute;opacity:0.5;', src='instructor_files/btn_spotlight.png', alt='SpotLightThis', onclick='changeSpotlight(2)')
+    img#setSpotlight_3.btn_spotlight(style='display:none;position:absolute;opacity:0.5;', src='instructor_files/btn_spotlight.png', alt='SpotLightThis', onclick='changeSpotlight(3)')
+    img#setSpotlight_4.btn_spotlight(style='display:none;position:absolute;opacity:0.5;', src='instructor_files/btn_spotlight.png', alt='SpotLightThis', onclick='changeSpotlight(4)')
+    img#setSpotlight_5.btn_spotlight(style='display:none;position:absolute;opacity:0.5;', src='instructor_files/btn_spotlight.png', alt='SpotLightThis', onclick='changeSpotlight(5)')
+    img#setSpotlight_6.btn_spotlight(style='display:none;position:absolute;opacity:0.5;', src='instructor_files/btn_spotlight.png', alt='SpotLightThis', onclick='changeSpotlight(6)')
+    img#setSpotlight_7.btn_spotlight(style='display:none;position:absolute;opacity:0.5;', src='instructor_files/btn_spotlight.png', alt='SpotLightThis', onclick='changeSpotlight(7)')
+    img#setSpotlight_8.btn_spotlight(style='display:none;position:absolute;opacity:0.5;', src='instructor_files/btn_spotlight.png', alt='SpotLightThis', onclick='changeSpotlight(8)')
+    img#setSpotlight_9.btn_spotlight(style='display:none;position:absolute;opacity:0.5;', src='instructor_files/btn_spotlight.png', alt='SpotLightThis', onclick='changeSpotlight(9)')
+    img#mute_0(style='display:none;position:absolute;opacity:0.5;', src='instructor_files/btn_camera_s.png', alt='Reverse Remote Video', onclick='muteRemote(0)')
+    img#mute_1(style='display:none;position:absolute;opacity:0.5;', src='instructor_files/btn_camera_s.png', alt='Reverse Remote Video', onclick='muteRemote(1)')
+    img#mute_2(style='display:none;position:absolute;opacity:0.5;', src='instructor_files/btn_camera_s.png', alt='Reverse Remote Video', onclick='muteRemote(2)')
+    img#mute_3(style='display:none;position:absolute;opacity:0.5;', src='instructor_files/btn_camera_s.png', alt='Reverse Remote Video', onclick='muteRemote(3)')
+    img#mute_4(style='display:none;position:absolute;opacity:0.5;', src='instructor_files/btn_camera_s.png', alt='Reverse Remote Video', onclick='muteRemote(4)')
+    img#mute_5(style='display:none;position:absolute;opacity:0.5;', src='instructor_files/btn_camera_s.png', alt='Reverse Remote Video', onclick='muteRemote(5)')
+    img#mute_6(style='display:none;position:absolute;opacity:0.5;', src='instructor_files/btn_camera_s.png', alt='Reverse Remote Video', onclick='muteRemote(6)')
+    img#mute_7(style='display:none;position:absolute;opacity:0.5;', src='instructor_files/btn_camera_s.png', alt='Reverse Remote Video', onclick='muteRemote(7)')
+    img#mute_8(style='display:none;position:absolute;opacity:0.5;', src='instructor_files/btn_camera_s.png', alt='Reverse Remote Video', onclick='muteRemote(8)')
+    img#mute_9(style='display:none;position:absolute;opacity:0.5;', src='instructor_files/btn_camera_s.png', alt='Reverse Remote Video', onclick='muteRemote(9)')
+    // <button id="toggleRemotesButton">Remotes</button>
+    span#copyright
+      | Copyright � 2014 Dance4Healing. All rights reserved. This site is best viewed in 
+      a(href='https://www.google.com/intl/en/chrome/browser/') chrome
+      |  and 
+      a(href='http://www.mozilla.org/en-US/firefox/new/') firefox
+      | .
+    style.
+      #copyright{
+      position: fixed;
+      font-size: 10px;
+      font-family: Arial, Helvetica, sans-serif;
+      bottom: 0px;
+      right: 10px;
+      margin-bottom: 10px;
+      }
+      #toggleLocalButton{
+      position:absolute;
+      top: 484px;
+      left:15px;
+      opacity: 0.5;
+      }
+      /*#toggleRemotesButton{
+      position:absolute;
+      top: 474px;
+      left:265px;
+      opacity: 0.5;
+      }
+      #setSpotlight{
+      position:absolute;
+      top: 500px;
+      left:265px;
+      opacity: 0.5;
+      }*/
+    script.
+      //toggle local
+      toggleLocalButton.title=1;
+      toggleLocalButton.onclick=function() {
+      thisVideo=document.getElementById("localVideo");
+      transform(thisVideo,this.title);
+      this.title=this.title*-1;
+      };
+      //toggle remotes
+      /*toggleRemotesButton.title=-1;
+      toggleRemotesButton.onclick=function() {
+      thisVideo=document.getElementById("remotes");
+      transform(thisVideo,this.title);
+      this.title=this.title*-1;
+      };
+      toggleRemotesButton.click();*/
+      function toggleRemote(i) {
+      console.log('toggleRemote '+i+' called')
+      d4hPeers=webrtc.webrtc.getPeers();
+      PeerId=d4hPeers[i].id+'_video_incoming';
+      thisVideo=document.getElementById(PeerId);
+      thisRemote=document.getElementById("toggleRemote_"+i);
+      transform(thisVideo,thisRemote.title);
+      thisRemote.title=thisRemote.title*-1;
+      }
+      //function toggleInstructor() {
+      //code
+      //}
+      function transform(e,d) {
+      e.style.webkitTransform="scaleX("+d+")";
+      e.style.MozTransform="scaleX("+d+")";
+      e.style.Transform="scaleX("+d+")";
+      }
+      function hideLocal() {
+      localVideo.style.display="none";
+      pauseButton.style.display="none";
+      resumeButton.style.display="none";
+      toggleLocalButton.style.display="none";
+      remotes.style.left="5px";
+      createPeerButtons();
+      }
+      function showLocal() {
+      localVideo.style.display="inline";
+      pauseButton.style.display="inline";
+      resumeButton.style.display="inline";
+      toggleLocalButton.style.display="inline";
+      remotes.style.left="471px";
+      createPeerButtons();
+      }
+      //sender directions to play
+      function broadcast() {
+      spotlight.mediaStreamId=webrtc.webrtc.localStream.id;
+      spotlight.id=localVideo.id;
+      spotlight.userId='';
+      setSpotlight(spotlight);
+      hideLocal();
+      swapButton('btnPlay','btnPause');
+      toggleInstructorButton.style.display="inline";
+      }
+      function pauseBroadcast() {
+      //webrtc.webrtc.sendToAll('streamForId',webrtc.webrtc.localStream)
+      spotlight.mediaStreamId=null;
+      spotlight.id=null;
+      spotlight.userId=null;
+      webrtc.webrtc.sendToAll('spotLight',spotlight);
+      showLocal();
+      swapButton('btnPause','btnPlay');
+      //document.getElementById("instructorVideo").muted=true;
+      instructorVideo.src="";
+      instructorVideo.autoplay=false;
+      toggleInstructorButton.style.display="none";
+      }
+      function changeSpotlight(PeerNum) {
+      //get id
+      spotlight.userId=webrtc.webrtc.getPeers()[PeerNum].id;
+      spotlight.id=webrtc.webrtc.getPeers()[PeerNum].id+"_video_incoming";
+      //get mediastream id
+      spotlight.mediaStreamId=webrtc.webrtc.getPeers()[PeerNum].stream.id;
+      //call setSpotlight
+      setSpotlight(spotlight);
+      toggleInstructorButton.style.display="inline";
+      swapButton('btnPause','btnPlay');
+      showLocal();
+      }
+      function setSpotlight(el) {
+      webrtc.webrtc.sendToAll('spotLight',el);
+      if (instructorVideo.src != document.getElementById(el.id).src) {
+      //code
+      //document.getElementById("instructorVideo").muted=true;
+      if (!instructorVideo.mozSrcObject) {
+      //code
+      instructorVideo.src = document.getElementById(el.id).src;
+      } else {
+      instructorVideo.mozSrcObject=document.getElementById(el.id).mozSrcObject;
+      }
+      instructorVideo.autoplay = true;
+      //document.getElementById("instructorVideo").muted=true;
+      transform(instructorVideo,-1);
+      if (webrtc.webrtc.localStream.id==el.mediaStreamId) {
+      //code
+      instructorVideo.muted=true;
+      instructorVideo.volume=0;
+      //increase the mic gain
+      } else {
+      instructorVideo.muted=false;
+      instructorVideo.volume=1;
+      //set mic normal
+      }
+      }
+      }
+      function checkPeerCount() {
+      d4hPeers=webrtc.webrtc.getPeers();
+      /*if (d4hPeers.length>0) {
+      //if there are peers, reset the volume to the slider
+      updateSlider(slide.value);
+      }*/
+      if (PeerCount!=d4hPeers.length) {
+      //code
+      PeerCount=d4hPeers.length;
+      createPeerButtons();
+      }
+      }
+      function createPeerButtons() {
+      d4hPeers=webrtc.webrtc.getPeers();
+      if (d4hPeers.length>0) {
+      i=0;
+      while (i<d4hPeers.length) {
+      //code
+      PeerId=d4hPeers[i].id+'_video_incoming';
+      if (document.getElementById(PeerId).src==instructorVideo.src) {
+      //code
+      document.getElementById(PeerId).style.display="none";
+      } else {
+      document.getElementById(PeerId).style.display="inline";
+      document.getElementById(PeerId).volume=1.0;
+      }
+      PeerLeft=xy(PeerId).left;
+      PeerTop=xy(PeerId).top;
+      console.log('d4hPeer'+i+":\\n   Left: "+PeerLeft+"\n   Top: "+PeerTop);
+      //create spotlight buttons
+      thisSpotlight=document.getElementById('setSpotlight_'+i)
+      thisSpotlight.style.top=(PeerTop+40)+"px";
+      thisSpotlight.style.left=(PeerLeft+5)+"px";
+      if (PeerTop==0&&PeerLeft==0) {
+      //code
+      thisSpotlight.style.display="none";
+      } else {
+      thisSpotlight.style.display="inline";
+      }
+      //update spotlight object and send
+      swapButton('btnPause','btnPlay');
+      //create reverse buttons
+      //<img id="toggleRemote_0" style="display:none;position:absolute;opacity:0.5;" src="btn_camera_s.png" alt="Reverse Remote Video" onclick='toggleRemote(0)'>
+      transform(document.getElementById(PeerId),-1);
+      thisPeerButton=document.getElementById('toggleRemote_'+i);
+      thisPeerButton.style.top=(PeerTop+15)+"px";
+      thisPeerButton.style.left=(PeerLeft+5)+"px";
+      if (PeerTop==0&&PeerLeft==0) {
+      //code
+      thisPeerButton.style.display="none";
+      } else {
+      thisPeerButton.style.display="inline";
+      }
+      //create mute buttons
+      i++;
+      }
+      if (d4hPeers.length<10) {
+      //code
+      while (i<10) {
+      //code
+      element = document.getElementById('setSpotlight_'+i).style.display="none";
+      element2 = document.getElementById('toggleRemote_'+i).style.display="none";
+      i++;
+      }
+      }
+      }
+      }
+      //receiver plays based on directions
+      webrtc.connection.on('message',function(message) {
+      //uncomment to show message alerts (testing only)
+      //console.log(JSON.stringify(message));
+      if(message.type=='spotLight') {
+      if (message.payload.mediaStreamId) {
+      //code
+      //document.getElementById("instructorVideo").muted=true;
+      if(message.to==message.payload.userId){
+      //code
+      instructorId=webrtc.webrtc.localStream.id;
+      //spotlight.id=localVideo.id;
+      instructorVideo.src = localVideo.src;
+      } else {
+      instructorId=message.payload.mediaStreamId;
+      NumPeers=webrtc.webrtc.getPeers().length;
+      for (i=0;i<NumPeers;i++) {
+      if (!webrtc.webrtc.getPeers()[i].stream) {
+      //code
+      } else {
+      if(webrtc.webrtc.getPeers()[i].stream.id==instructorId||webrtc.webrtc.getPeers()[i].stream.id==instructorId) {
+      instructorVideo.src = webrtc.webrtc.getPeers()[i].videoEl.src;
+      }
+      }
+      }
+      }
+      instructorVideo.autoplay = true;
+      //document.getElementById("instructorVideo").muted=true;
+      transform(instructorVideo,-1);
+      } else {
+      //document.getElementById("instructorVideo").muted=true;
+      instructorVideo.src="";
+      instructorVideo.autoplay=false;
+      }
+      } else if (message.type=='getSpotlight') {
+      //code
+      //console.log('getSpotlight received: '+JSON.stringify(spotlight));
+      if (spotlight.mediaStreamId!=null) {
+      //code
+      setSpotlight(spotlight);
+      }
+      }
+      })
