@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<!-- saved from url=(0053)https://dance4healing-jan16.herokuapp.com/users/login-->
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Dance4healing</title>
+    <link rel="stylesheet" href="/assets/bootstrap.css">
+    <link rel="stylesheet" href="/assets/style.css">
+    <link rel="stylesheet" href="/assets/fontello-embedded.css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:400,300,700" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:400italic,700italic,300italic|Open+Sans:700|Roboto+Condensed:300,400,700" rel="stylesheet" type="text/css">
+  </head>
+  <body cz-shortcut-listen="true">
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div id="fb-root"></div>
+      <div id="fb-root"></div>
+      <!-- Facebook Login-->
+      <script>
+        (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5";
+        fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+      </script>
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar" class="navbar-toggle collapsed"><span class="sr-only">Toggle Navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a href="index.html" class="navbar-brand">Dance4healing								</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <!--
+            <li>
+            <a href="https://dance4healing-jan16.herokuapp.com/">Buddy Dance			</a></li>
+            -->
+            <li><a href="/users/register">Join the Party</a></li>
+            <li class="active"><a href="/users/login">Log In</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right"></ul>
+        </div>
+      </div>
+    </nav>
+    <div style="margin-top: 75px; text-align: center; width: 380px; " class="container">
+      <h1>Log In</h1>
+      <p style="padding-bottom: 12px; font-family: 'Lato', sans-serif; font-size: 24px; font-weight: 300; letter-spacing: 1px;">Smile, Log in, Dance, Have Fun!</p>
+      <!-- add personality font-->
+      <div data-max-rows="1" data-size="xlarge" data-show-faces="false" data-auto-logout-link="false" class="fb-login-button"></div>
+      <form method="post" action="/users/login">
+        <div class="form-group">
+          <label style="float: left; font-family: 'Roboto Condensed', sans-serif;">Username</label>
+          <input name="username" type="text" class="form-control container">
+        </div>
+        <div style="margin-bottom: 2px;" class="form-group">
+          <label style="float: left; font-family: 'Roboto Condensed', sans-serif;">Password</label>
+          <input name="password" type="password" class="form-control container">
+        </div>
+        <p style="margin-top: 2px; padding-bottom: 12px; font-size: 14px; font-family: 'Roboto Condensed', sans-serif; float: left;"><a href="/forgotpassword" style=" margin-top: -10px;">Forgot your password?</a></p>
+        <!-- harder font, like open sans or montserrat-->
+        <button type="submit" name="submit" style="margin-top: 36px; margin-left: -120px;" class="btn-lg register2">Let's Dance!</button>
+        <p style="text-align: center; padding-top: 18px; font-size: 17px; padding-bottom: 18px; border-top-style: dotted; border-width: 2px; margin-top: 24px; font-family: 'Lato', sans-serif; font-size: 24px; font-weight: 300; letter-spacing: 1px;">No account and want to dance?</p>
+        <button type="button" name="button" class="btn-lg login2"><a href="/users/register " style="color: #CC3366;">Join the Party</a></button>
+      </form>
+    </div>
+    <footer>
+      <div class="icons"><a href="mailto:hello@dance4healing.com"><img src="/assets/btn_mail.png" alt=""></a><a href="https://www.facebook.com/groups/807980009230702/"><img src="/assets/btn_heart.png" alt=""></a><a href="https://www.facebook.com/danceforhealing?fref=ts"><img src="/assets/btn_facebook.png" alt=""></a><a href="http://www.twitter.com/dance4healing"><img src="/assets/btn_twitter.png" alt=""></a></div>
+      <p class="smallfooter">Copyright	© Dance4Healing 2016</p>
+      <p class="smallfooter">Best viewed in <a href="https://www.google.com/chrome/browser/desktop/">Chrome web browser.</a></p>
+    </footer>
+    <script src="/assets/jquery.min.js"></script>
+    <script src="/assets/bootstrap.js"></script>
+  </body>
+</html>

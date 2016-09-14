@@ -186,47 +186,47 @@ a:hover {
 
 #btn_happy {
     position: relative;
-    top: -317px;
-    left: -5px;
+    top: -318px;
+    left: -1px;
 }
 
 #btn_sad {
     position: relative;
-    top: -317px;
+    top: -318px;
+    right: -3px;
 }
 
 #btn_tired {
     position: relative;
-    left: -72px;
-    top: -355px;
+    left: -69px;
+    top: -357px;
 }
 
 #btn_angry {
     position: relative;
-    left: 66px;
-    top: -355px;
+    left: 68px;
+    top: -357px;
 }
 
 #btn_worried {
     position: relative;
-    top: -394px;
-    left: -5px;
+    top: -397px;
+    left: -2px;
 }
 
 #btn_scared {
     position: relative;
-    top: -394px;
+    top: -397px;
+    right: -2px;
 }
 
 #face_neutral {
     position: relative;
-    left: -2px;
-    top: -621px;
+    top: -625px;
 }
 
 #welcome {
     position: absolute;
-    left: 0px;
 }
 
 #page_holder {
@@ -292,7 +292,7 @@ footer .smallfooter {
 }
 
 .flipper {
-    transition: 0.6s;
+    transition: 1s;
     transform-style: preserve-3d;
     position: relative;
 }
@@ -300,7 +300,7 @@ footer .smallfooter {
 .front,
 .back {
     backface-visibility: hidden;
-    transition: 0.6s;
+    transition: 1s;
     transform-style: preserve-3d;
     position: absolute;
     top: 0;
