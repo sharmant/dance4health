@@ -113,9 +113,9 @@
                   
               });
               // Success Message
-                  req.flash('success','You are now registered and may log in');
+                  req.flash('success','Thank you for registering! You may login now!');
                   res.location('/');
-                  res.location('/');
+                  res.redirect('/');
             
             }
 

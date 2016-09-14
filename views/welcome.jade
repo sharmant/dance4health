@@ -60,7 +60,7 @@ html
       switch (e.id) {
       case "btn_happy":
       changeMsg("Happy", "We're ecstatic that you are happy!<br />Let's rock the party!");
-      //alert ("We're ecstatic that you are happy!\\\\\nLet's rock the party!");
+      //alert ("We're ecstatic that you are happy!\\\\\\nLet's rock the party!");
       btn_happy.style.opacity = 1.0;
       break;
       case "btn_sad":
@@ -94,8 +94,8 @@ html
           img(src='assets/btn_logout.png')
       .mainlogoarea
         img(src='welcomePage_files/d4h_logo.png')
-        //- var str = name;
-        //- var fname = str.split(',')[0];
+        - var str = name;
+        - var fname = str.split(',')[0];
         h1 Welcome, #{fname}!
       .buttonarea
         .flip-container(ontouchstart="this.classList.toggle('hover');")
@@ -107,10 +107,10 @@ html
               h2 Dance With Your Buddy
               p
                 | Ready to rock? Brainstorm with your buddy about a fun name for your dynamic duo. For example, your favorite cartoon! Before you know it, your dynamic duo will be taking over the world!
-              form#form1(action='javascript:goToRoom();', method='get', style='color: #CC3366; margin: 15px 15px; border-radius: 10px')
-                input(type='text', name='lname', style='border-radius: 10px; border-style: solid')
+              form#form1(action='javascript:goToRoom();', method='get')
+                input.room(type='text', name='room')
                 br
-              button(type='submit', form='form1', value='Submit', style='border-radius: 10px; color: #fff;background-color: #CC3366;; border-style: solid; border-color: #CC3366') Go!
+              button.btnGo(type='submit', form='form1', value='Submit') Go!
         .gap
         .attendclass
           a(href='class')
