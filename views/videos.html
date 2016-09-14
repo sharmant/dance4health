@@ -27,8 +27,7 @@
     </script>
     <script type="text/javascript" src="https://cdn.socket.io/socket.io-1.3.7.js"></script>
     <script src="buddydance_files/jquery-ui.min.js"></script>
-    <script src="buddydance_files/latest.js">
-    </script>
+    <script src="buddydance_files/latest.js"></script>
     <link rel="stylesheet" href="buddydance_files/d4h.css">
     <style>
     body {
@@ -51,10 +50,11 @@
 </head>
 
 <body onunload="webrtc.webrtc.localStream.stop();webrtc.webrtc.mute();document.getElementById('localVideo').src=null;webrtc.connection.disconnect();" style="zoom: 1;" class="active">
-    <script type="text/javascript" src="buddydance_files/all.js">
-    </script>
+    <script type="text/javascript" src="buddydance_files/all.js"></script>
     <h1 id="title">Dance4Healing</h1>
-    <div class="logout"><a href="users/logout">Logout</a></div>
+    <div class="logout">
+        <a href="users/logout"><img src="assets/btn_logout.png"></a>
+    </div>
     <div id="controlCover"></div>
     <div id="countdownDiv"></div>
     <div id="countdownDivBack"><img src="buddydance_files/screen.png"></div>
@@ -74,6 +74,12 @@
         <option value="eGbK20Qzlww">Danceation: Heath Group Class - Dance 4 (Hands on your body) </option>
         <option value="EW2P3g-a104">Danceation: Heath Group Class - Dance 5 (With scarves) </option>
         <option value="0VsSrGF05c0">Danceation: Heath Group Class - Danceation explained & song </option>
+        <option value="78V2jfmbKNg">Torso and arm warm up</option>
+        <option value="OaOG7IG7PEc">Plies and port de bras</option>
+        <option value="t_OHUojGdww">Swings</option>
+        <option value="heU97i2wJIk">Jazzy feet</option>
+        <option value="odV0CdWqnhk">Stars and Stripes March</option>
+        <option value="sXGswJea2hI">West Side Story Tribute</option>
         <option value="fRsYIw2YUaw">Nia: Kristen Group Class - Warmup</option>
         <option value="A1d4MvXvjgs">Nia: Kirsten Group Class - High Energy, Martial Arts Style</option>
         <option value="a3zg8vU_CZ4">Nia: Kirsten Group Class - Slower Song, No Worries</option>
@@ -94,12 +100,6 @@
         <option value="DrhIUEPq5Ps">Zumba: Melissa Solo - Dance 3</option>
         <option value="5Ne5g2dfCR0">What is Bollywood Dance?</option>
         <option value="K-wr1y7Dt4U">Bollywood Intro Moves + Dance</option>
-        <option value="78V2jfmbKNg">Torso and arm warm up</option>
-        <option value="OaOG7IG7PEc">Plies and port de bras</option>
-        <option value="t_OHUojGdww">Swings</option>
-        <option value="heU97i2wJIk">Jazzy feet</option>
-        <option value="odV0CdWqnhk">Stars and Stripes March</option>
-        <option value="sXGswJea2hI">West Side Story Tribute</option>
     </select>
     <div id="myytplayer"></div>
     <div id="container"></div>
@@ -126,7 +126,6 @@
                 showinfo: 0,
                 autoplay: 0,
                 fs: 0,
-
             }
         });
     }
@@ -197,7 +196,7 @@
     #pauseButton {
         position: absolute;
         /*top: 738px;
-    left:475px;*/
+      left:475px;*/
         top: 500px;
         left: 390px;
         opacity: 0.5;
@@ -207,7 +206,7 @@
     #resumeButton {
         position: absolute;
         /*top: 738px;
-    left:552px;*/
+      left:552px;*/
         top: 500px;
         left: 390px;
         opacity: 0.5;
@@ -239,3 +238,5 @@
     }
     </style>
 </body>
+
+</html>

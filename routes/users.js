@@ -110,13 +110,11 @@
               User.createUser(newUser, function(err, user){
                   if (err) throw err;
                   console.log('user creation successful');
-                  req.flash('success','You are now registered and may log in');
                   
               });
               // Success Message
                   req.flash('success','You are now registered and may log in');
-                  // res.location('/');
-                  res.redirect('/users/register');
+                  res.location('/');
                   res.location('/');
             
             }

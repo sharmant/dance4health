@@ -114,7 +114,8 @@ html
       display: none;
       }
     .logout
-      a(href='users/logout') Logout
+      a(href='users/logout')
+        img(src='assets/btn_logout.png')
     button#screenShareButton(disabled='') share screen
     p#subTitle
       | Link to join: https://demo.dance4healing.com/~yuumouco/dance4healing/sandbox/demo/class.html
@@ -164,7 +165,7 @@ html
       instructorVideo.volume = 1;
       localVideo.volume = 0;
       d4hVideoEl = document.getElementById("localVideo");
-      console.log("Width: " + d4hVideoEl.videoWidth + "\\\n Height: " + d4hVideoEl.videoHeight);
+      console.log("Width: " + d4hVideoEl.videoWidth + "\\\\n Height: " + d4hVideoEl.videoHeight);
       //mute the local video element audio (possibly fix the firefox feedback issue)
       d4hVideoEl.volume = 0;
       //document.getElementById("localVideo").muted=true;
@@ -186,7 +187,7 @@ html
       setRoom(room);
       } else {
       $('form').submit(function() {
-      var val = $('#sessionInput').val().toLowerCase().replace(/\\\s/g, '-').replace(/[^A-Za-z0-9_\-]/g, '');
+      var val = $('#sessionInput').val().toLowerCase().replace(/\\\\s/g, '-').replace(/[^A-Za-z0-9_\-]/g, '');
       webrtc.createRoom(val, function(err, name) {
       var newUrl = location.pathname + '?' + name;
       if (!err) {
