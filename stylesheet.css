@@ -1,0 +1,26 @@
+body {
+  background: rgba(255, 182, 193, 0.5);
+}
+
+#header {
+  position: relative;
+  top: -10px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  font-family: 'Lato', sans-serif;
+  font-size: 19px;
+  font-weight: 300;
+
+}
+
+.center {
+     float: none;
+     margin-left: auto;
+     margin-right: auto;
+}
+
+.survey {
+  padding: 14px 25px;
+  background-image:url(http://www.designbolts.com/wp-content/uploads/2012/12/Triangle-White-Seamless-Patterns.jpg);
+  position: center-block;
+}

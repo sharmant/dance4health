@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <link rel="stylesheet" href="bootstrap.css">
+      <link rel="stylesheet" href="stylesheet.css"/>
+      <title>Preference Survey</title>
+  </head>
+  <body>
+    <div id="header"><h1><p class="text-center">User Preference Survey</p></h1></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-7 center">
+          <div class="survey">
+      <form>
+      Name: <br>
+      <input type="text" name = "firstName"><br><br>
+      Age: <br>
+      <input type="text" name = "age"><br><br>
+      Twitter Username: <br>
+      <input type="text" name = "twitterAccount"><br><br>
+      What kind(s) of music make you move? (The righter, the more it gets me groving!) <br><br>
+          &nbsp;Rock<br>
+            <input type="range" name="rockRange" min="0" max="4"> <br>
+          &nbsp;Classical<br>
+            <input type="range" name="classicalRange" min="0" max="4"> <br>
+          &nbsp;Country<br>
+            <input type="range" name="countryRange" min="0" max="4"> <br>
+          &nbsp;Pop<br>
+            <input type="range" name="popRange" min="0" max="4"> <br>
+          &nbsp;Jazz<br>
+            <input type="range" name="jazzRange" min="0" max="4"> <br>
+          &nbsp;R and B<br>
+            <input type="range" name="rAndBRange" min="0" max="4"> <br>
+          &nbsp;Electronic<br>
+            <input type="range" name="electronicRange" min="0" max="4"> <br><br>
+      How often do you dance? (times per month) <br>
+      <input type="text" name = "danceFrequency"><br><br>
+      How would you rate your dance energy levels? <br>
+      <input type="radio" name="energyLevel" value="low" checked> Easy Breezy<br>
+      <input type="radio" name="energyLevel" value="medium"> Mellow Bellow<br>
+      <input type="radio" name="energyLevel" value="high"> Dance Machine<br><br>
+      How many hours do you exercise per week?<br>
+      <input type="text" name = "exerciseTime"><br><br>
+      How much time do you think you can dance every day? <br>
+      <input type="text" name = "timePeriod"><br><br>
+      What are your hobbies and interests? <br>
+      <textarea rows="3" cols="50" name = "hobbiesAndInterests"></textarea><br><br>
+      What is your MBTI (Myers-Briggs) type? <br>
+      <input type="text" name = "MBTI"><br><br>
+      What do you like about dance?<br>
+      <textarea rows="4" cols="50" name="whyDance"></textarea><br><br>
+      What is one thing in the world you would like to see changed?<br>
+      <textarea rows="4" cols="50" name="whatChange"></textarea><br><br>
+      <input type="submit" value="Submit">
+    </form>
+  </div>
+  </div>
+</div>
+</div>
+    <!-- JavaScript -->
+    <script type="text/javascript" src ="routes/Dance4HealingBoomerSurvey.js"></script>
+  </body>
+</html>
